@@ -120,6 +120,7 @@
     <div class="legend">
       <span><span class="swatch" style="background:var(--blue)"></span> Aadhiya</span>
       <span><span class="swatch" style="background:var(--red)"></span> Aadhana</span>
+      <span><span class="swatch" style="background:#B8860B"></span> Age-Group Winner (benchmark)</span>
     </div>
     <div class="chart-row">
       <div class="chart-box"><h4>25 Yd Backstroke (seconds, lower = faster)</h4><canvas id="chartBack"></canvas></div>
@@ -200,29 +201,38 @@ const meetLabels = ["7/5 Holden","7/9 Longfellow","7/16 Wayland/Westford","7/23 
 
 const backstroke = {
   Aadhiya: [27.61, null, 29.75, 26.91],
-  Aadhana: [30.22, 32.90, 32.19, 31.72]
+  Aadhana: [30.22, 32.90, 32.19, 31.72],
+  Topper: [19.81, 20.05, 23.64, 20.10]
 };
 const freestyle = {
   Aadhiya: [24.25, 24.04, 23.63, 22.83],
-  Aadhana: [35.76, 25.41, 27.26, 27.64]
+  Aadhana: [35.76, 25.41, 27.26, 27.64],
+  Topper: [17.07, 17.57, 18.03, 18.63]
 };
 
-const colors = { Aadhiya: "#2E75B6", Aadhana: "#C00000" };
+const colors = { Aadhiya: "#2E75B6", Aadhana: "#C00000", Topper: "#B8860B" };
+const seriesLabels = { Aadhiya: "Aadhiya", Aadhana: "Aadhana", Topper: "Age-Group Winner" };
 
 function lineChart(ctx, dataset, yLabel){
   return new Chart(ctx, {
     type: "line",
     data: {
       labels: meetLabels,
-      datasets: Object.keys(dataset).map(name => ({
-        label: name,
-        data: dataset[name],
-        borderColor: colors[name],
-        backgroundColor: colors[name],
-        spanGaps: true,
-        tension: 0.15,
-        pointRadius: 5,
-      }))
+      datasets: Object.keys(dataset).map(name => {
+        const isTopper = name === "Topper";
+        return {
+          label: seriesLabels[name] || name,
+          data: dataset[name],
+          borderColor: colors[name],
+          backgroundColor: colors[name],
+          spanGaps: true,
+          tension: 0.15,
+          pointRadius: isTopper ? 4 : 5,
+          pointStyle: isTopper ? "rectRot" : "circle",
+          borderDash: isTopper ? [6,4] : [],
+          borderWidth: isTopper ? 2 : 3,
+        };
+      })
     },
     options: {
       responsive: true,
