@@ -55,6 +55,15 @@
   .athlete-card .info p{margin:2px 0; font-size:13px; color:var(--muted);}
   .table-pic{width:26px; height:26px; border-radius:50%; object-fit:cover; vertical-align:middle; margin-right:8px;}
 
+
+  .table-scroll{max-height:480px; overflow-y:auto; overflow-x:auto; border:1px solid var(--border); border-radius:10px;}
+  .table-scroll table{border-radius:0;}
+  .table-scroll thead th{position:sticky; top:0; z-index:2;}
+  .table-scroll.expanded{max-height:none; overflow-y:visible;}
+  .log-controls{display:flex; justify-content:flex-end; margin-bottom:10px;}
+  .expand-btn{background:var(--navy); color:#fff; border:none; padding:7px 14px; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; font-family:Arial;}
+  .expand-btn:hover{background:var(--blue);}
+
 </style>
 </head>
 <body>
@@ -127,13 +136,18 @@
       <span><span class="swatch" style="background:var(--yellow)"></span> Exhibition time (x-prefix, non-scoring)</span>
       <span><span class="swatch" style="background:var(--pink)"></span> DQ - no official time</span>
     </div>
-    <table id="logTable">
-      <thead><tr>
-        <th>Swimmer</th><th>Date</th><th>Meet</th><th>Event</th><th>Finals</th>
-        <th>Place</th><th>Heat Size</th><th>Heat Winner</th><th>Winner Time</th><th>Notes</th>
-      </tr></thead>
-      <tbody></tbody>
-    </table>
+    <div class="log-controls">
+      <button id="logExpandBtn" class="expand-btn" onclick="toggleLogExpand()">Expand to view all rows</button>
+    </div>
+    <div class="table-scroll" id="logScrollWrap">
+      <table id="logTable">
+        <thead><tr>
+          <th>Swimmer</th><th>Date</th><th>Meet</th><th>Event</th><th>Finals</th>
+          <th>Place</th><th>Heat Size</th><th>Heat Winner</th><th>Winner Time</th><th>Notes</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
   </section>
 
   <section>
@@ -295,6 +309,13 @@ logRows.forEach(r=>{
   tr.innerHTML = `<td><img class="table-pic" src="${avatarSrc[swimmer]}">${swimmer}</td><td>${date}</td><td>${meet}</td><td>${event}</td><td>${finals}</td><td>${place}</td><td>${heat}</td><td>${winner}</td><td>${wtime}</td><td>${notes}</td>`;
   logBody.appendChild(tr);
 });
+
+function toggleLogExpand(){
+  const wrap = document.getElementById('logScrollWrap');
+  const btn = document.getElementById('logExpandBtn');
+  const expanded = wrap.classList.toggle('expanded');
+  btn.textContent = expanded ? 'Collapse to scrollable view' : 'Expand to view all rows';
+}
 </script>
 </body>
 </html>
