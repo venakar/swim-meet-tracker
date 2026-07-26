@@ -127,6 +127,11 @@
       <div class="chart-box"><h4>25 Yd Freestyle (seconds, lower = faster)</h4><canvas id="chartFree"></canvas></div>
     </div>
     <div class="chart-row" style="margin-top:20px;">
+      <div class="chart-box"><h4>25 Yd Butterfly (seconds, lower = faster)</h4><canvas id="chartFly"></canvas></div>
+      <div class="chart-box"><h4>25 Yd Breaststroke (seconds, lower = faster)</h4><canvas id="chartBreast"></canvas></div>
+    </div>
+    <p style="font-size:12px; color:var(--muted); margin:8px 2px 0;">Butterfly and Breaststroke have fewer recorded swims so far (several DQs / events not yet swum by both girls) - these charts will fill in as more meets are added.</p>
+    <div class="chart-row" style="margin-top:20px;">
       <div class="chart-box"><h4>Personal Best by Stroke (seconds)</h4><canvas id="chartPB"></canvas></div>
       <div class="chart-box"><h4>Time vs. Age-Group Winner (most recent meet, 7/23)</h4><canvas id="chartGap"></canvas></div>
     </div>
@@ -209,6 +214,16 @@ const freestyle = {
   Aadhana: [35.76, 25.41, 27.26, 27.64],
   Topper: [17.07, 17.57, 18.03, 18.63]
 };
+const butterfly = {
+  Aadhiya: [null, null, null, null],
+  Aadhana: [null, null, 35.78, 38.05],
+  Topper: [null, null, 21.95, 17.50]
+};
+const breaststroke = {
+  Aadhiya: [null, null, null, 28.78],
+  Aadhana: [null, null, null, null],
+  Topper: [null, 26.39, null, 28.78]
+};
 
 const colors = { Aadhiya: "#2E75B6", Aadhana: "#C00000", Topper: "#B8860B" };
 const seriesLabels = { Aadhiya: "Aadhiya", Aadhana: "Aadhana", Topper: "Age-Group Winner" };
@@ -246,6 +261,8 @@ function lineChart(ctx, dataset, yLabel){
 
 lineChart(document.getElementById('chartBack'), backstroke, "seconds");
 lineChart(document.getElementById('chartFree'), freestyle, "seconds");
+lineChart(document.getElementById('chartFly'), butterfly, "seconds");
+lineChart(document.getElementById('chartBreast'), breaststroke, "seconds");
 
 // Personal Best bar chart
 const pbLabels = ["Backstroke","Freestyle","Breaststroke","Butterfly"];
