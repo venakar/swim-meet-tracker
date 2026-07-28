@@ -106,13 +106,6 @@
 
 
 
-  .swim-strip{position:relative; width:100%; height:38px; overflow:hidden; background:linear-gradient(180deg,#bfe3f7,#8fd0ee); border-bottom:1px solid var(--border);}
-  .swim-strip::after{content:""; position:absolute; inset:0; background:repeating-linear-gradient(90deg, rgba(255,255,255,.4) 0 3px, transparent 3px 26px);}
-  .swim-mover{position:absolute; top:50%; left:100%; transform:translateY(-50%); display:flex; align-items:center; gap:8px; white-space:nowrap; animation:swim-rtl 13s linear infinite;}
-  .swim-mover .swimmer-icon{font-size:20px; display:inline-block; transform:scaleX(-1);}
-  .swim-mover .swim-caption{font-size:12.5px; font-weight:700; color:var(--navy); background:rgba(255,255,255,.88); padding:3px 11px; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,.15); white-space:nowrap;}
-  @keyframes swim-rtl{ from{ left:100%; } to{ left:-420px; } }
-
 </style>
 </head>
 <body>
@@ -133,13 +126,6 @@
   </div>
 
 </header>
-
-<div class="swim-strip">
-  <div class="swim-mover" id="swimMover">
-    <span class="swimmer-icon">&#127939;</span>
-    <span class="swim-caption" id="swimCaption">Keep going!</span>
-  </div>
-</div>
 
 <div class="wrap">
 
@@ -445,22 +431,6 @@ function filterTable(tableId, groupId, btn){
     r.style.display = (swimmer === 'all' || r.dataset.swimmer === swimmer) ? '' : 'none';
   });
 }
-
-const swimPhrases = [
-  "Keep going!", "You've got this!", "Every lap counts!", "Faster than yesterday!",
-  "Believe in your training!", "Push through!", "Champions never quit!", "Proud of you!",
-  "Strong finish!", "Trust your turns!"
-];
-let swimPhraseIdx = 0;
-const swimCaptionEl = document.getElementById('swimCaption');
-const swimMoverEl = document.getElementById('swimMover');
-function nextSwimPhrase(){
-  if(!swimCaptionEl) return;
-  swimCaptionEl.textContent = swimPhrases[swimPhraseIdx];
-  swimPhraseIdx = (swimPhraseIdx + 1) % swimPhrases.length;
-}
-nextSwimPhrase();
-if(swimMoverEl) swimMoverEl.addEventListener('animationiteration', nextSwimPhrase);
 </script>
 </body>
 </html>
