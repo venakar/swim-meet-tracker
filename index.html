@@ -103,6 +103,26 @@
   .bg-photo{position:fixed; inset:0; background-image:var(--pool-img); background-size:cover; background-position:center; background-repeat:no-repeat; background-attachment:fixed; opacity:0.45; z-index:0; pointer-events:none;}
   header, .wrap, footer{position:relative; z-index:1;}
 
+
+  .motivate-section{
+    background:linear-gradient(120deg, rgba(46,117,182,0.14), rgba(192,0,0,0.08));
+    border:1px solid var(--border); border-radius:14px; padding:18px 26px; margin-bottom:28px;
+    display:flex; align-items:center; gap:22px; flex-wrap:wrap;
+  }
+  .stopwatch-svg{width:60px; height:60px; flex-shrink:0;}
+  .sw-face{fill:#fff; stroke:var(--navy); stroke-width:4;}
+  .sw-tick{stroke:var(--border); stroke-width:2;}
+  .sw-hand{stroke:var(--red); stroke-width:4; stroke-linecap:round; transform-origin:50px 55px; animation:sw-tick 2s steps(12) infinite;}
+  .sw-button{fill:var(--navy);}
+  @keyframes sw-tick{ to{ transform:rotate(360deg); } }
+  .motivate-body{flex:1; min-width:240px;}
+  .motivate-label{font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--muted); margin-bottom:4px;}
+  .motivate-quote{font-size:16px; font-weight:700; color:var(--navy); font-style:italic; margin:0 0 12px 0; min-height:24px; opacity:1; transition:opacity .4s ease;}
+  .swim-lane{position:relative; height:30px; background:linear-gradient(180deg,#bfe3f7,#8fd0ee); border-radius:8px; overflow:hidden; border:1px solid var(--border);}
+  .swim-lane::after{content:""; position:absolute; inset:0; background:repeating-linear-gradient(90deg, rgba(255,255,255,.4) 0 3px, transparent 3px 26px);}
+  .swimmer-icon{position:absolute; top:50%; left:-30px; transform:translateY(-50%); font-size:20px; animation:swim-across 4.5s linear infinite;}
+  @keyframes swim-across{ from{ left:-30px; } to{ left:100%; } }
+
 </style>
 </head>
 <body>
@@ -125,6 +145,27 @@
 </header>
 
 <div class="wrap">
+
+  <div class="motivate-section">
+    <svg class="stopwatch-svg" viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg">
+      <rect x="42" y="4" width="16" height="8" rx="2" class="sw-button"></rect>
+      <line x1="50" y1="12" x2="50" y2="20" stroke="var(--navy)" stroke-width="4"></line>
+      <circle cx="50" cy="58" r="40" class="sw-face"></circle>
+      <g class="sw-tick">
+        <line x1="50" y1="22" x2="50" y2="28"></line>
+        <line x1="50" y1="88" x2="50" y2="94"></line>
+        <line x1="14" y1="58" x2="20" y2="58"></line>
+        <line x1="80" y1="58" x2="86" y2="58"></line>
+      </g>
+      <line x1="50" y1="58" x2="50" y2="30" class="sw-hand"></line>
+      <circle cx="50" cy="58" r="3.5" fill="var(--navy)"></circle>
+    </svg>
+    <div class="motivate-body">
+      <div class="motivate-label">Keep Swimming</div>
+      <p class="motivate-quote" id="motivateQuote">&ldquo;Every lap makes you stronger.&rdquo;</p>
+      <div class="swim-lane"><span class="swimmer-icon">&#127939;</span></div>
+    </div>
+  </div>
 
   <div class="athletes">
     <div class="athlete-card">
@@ -428,6 +469,31 @@ function filterTable(tableId, groupId, btn){
     r.style.display = (swimmer === 'all' || r.dataset.swimmer === swimmer) ? '' : 'none';
   });
 }
+
+const motivateQuotes = [
+  "Every lap makes you stronger.",
+  "Champions are built one practice at a time.",
+  "Fast today, faster tomorrow!",
+  "The water rewards those who never quit.",
+  "Believe in your training, trust your turns.",
+  "Your only competition is who you were yesterday.",
+  "Great swimmers are made in practice, not just in meets.",
+  "Keep your head down and swim your race.",
+  "Every second you shave off is a second earned.",
+  "Proud of you no matter the clock!"
+];
+let motivateIdx = 0;
+function showMotivateQuote(){
+  const el = document.getElementById('motivateQuote');
+  if(!el) return;
+  el.style.opacity = 0;
+  setTimeout(()=>{
+    el.innerHTML = '&ldquo;' + motivateQuotes[motivateIdx] + '&rdquo;';
+    el.style.opacity = 1;
+    motivateIdx = (motivateIdx + 1) % motivateQuotes.length;
+  }, 400);
+}
+setInterval(showMotivateQuote, 4500);
 </script>
 </body>
 </html>
