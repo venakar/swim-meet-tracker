@@ -38,7 +38,8 @@
   .card .big{font-size:19px; font-weight:700; color:var(--navy);}
   .card .sub{font-size:11px; color:var(--muted); margin-top:1px;}
   section{margin-bottom:40px;}
-  h2{color:var(--navy); border-bottom:2px solid var(--border); padding-bottom:8px; font-size:19px;}
+  h2{color:var(--navy); border-bottom:2px solid var(--border); padding-bottom:8px; font-size:19px; text-transform:uppercase; letter-spacing:1.2px;}
+  .panel-section{background:rgba(255,255,255,0.9); border:1px solid var(--border); border-radius:12px; padding:22px 26px;}
   .chart-row{display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:16px;}
   @media (max-width:900px){ .chart-row{grid-template-columns:1fr;} }
   .chart-box{background:var(--card); border:1px solid var(--border); border-radius:10px; padding:18px;}
@@ -58,7 +59,7 @@
   .tag-aadhana{background:var(--red);}
   .note{background:#fff8e6; border:1px solid #f0deac; border-radius:8px; padding:12px 16px; font-size:13px; color:#5c4a12;}
   .takeaways li{margin-bottom:8px; font-size:14px; line-height:1.5;}
-  .takeaways-box{background:var(--card); border:1px solid var(--border); border-radius:10px; padding:18px 22px; box-shadow:0 1px 3px rgba(0,0,0,.04);}
+  .takeaways-box{background:transparent; border:none; border-radius:0; padding:0; box-shadow:none;}
   .takeaways-box ul{margin:0; padding-left:20px;}
   .takeaways-box li:last-child{margin-bottom:0;}
   footer{text-align:center; color:var(--muted); font-size:12px; padding:20px 0;}
@@ -149,7 +150,7 @@
     <div class="card"><h3>Aadhana - Best Butterfly</h3><div class="big">35.78s</div><div class="sub">Only 2 attempts so far</div></div>
   </div>
 
-  <section>
+  <section class="panel-section">
     <h2>Progress Over Time</h2>
     <div class="legend">
       <span><span class="swatch" style="background:var(--blue)"></span> Aadhiya</span>
@@ -171,7 +172,7 @@
     </div>
   </section>
 
-  <section>
+  <section class="panel-section">
     <h2>Personal Bests Summary</h2>
     <div class="table-controls-row">
       <div class="filter-group" id="pbFilterGroup">
@@ -190,7 +191,7 @@
     </table>
   </section>
 
-  <section>
+  <section class="panel-section">
     <h2>Full Meet Log</h2>
     <div class="legend">
       <span><span class="swatch" style="background:var(--green)"></span> 1st place / event win</span>
@@ -223,7 +224,7 @@
     </div>
   </section>
 
-  <section>
+  <section class="panel-section">
     <h2>Headline Takeaways</h2>
     <div class="takeaways-box">
     <ul class="takeaways">
