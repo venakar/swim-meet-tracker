@@ -97,6 +97,7 @@
   .filter-btn.active[data-swimmer="Aadhiya Venkateswarlu"]{background:var(--blue);}
   .filter-btn.active[data-swimmer="Aadhana Venkateswarlu"]{background:var(--red);}
   .table-controls-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:10px;}
+  #logExpandBtn{margin-left:auto; flex-shrink:0;}
 
 
   body{position:relative;}
@@ -220,7 +221,7 @@
         <select class="filter-select" id="logDateFilter" onchange="applyLogFilters()"><option value="all">All Dates</option></select>
         <button class="expand-btn" style="background:var(--muted);" onclick="resetLogFilters()">Reset filters</button>
       </div>
-      <button id="logExpandBtn" class="expand-btn" onclick="toggleLogExpand()">Expand to view all rows</button>
+      <button id="logExpandBtn" class="expand-btn" onclick="toggleLogExpand()">Expand All</button>
     </div>
     <div class="table-scroll" id="logScrollWrap">
       <table id="logTable">
@@ -430,7 +431,7 @@ function toggleLogExpand(){
   const wrap = document.getElementById('logScrollWrap');
   const btn = document.getElementById('logExpandBtn');
   const expanded = wrap.classList.toggle('expanded');
-  btn.textContent = expanded ? 'Collapse to scrollable view' : 'Expand to view all rows';
+  btn.textContent = expanded ? 'Collapse' : 'Expand All';
 }
 
 function filterTable(tableId, groupId, btn){
