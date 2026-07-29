@@ -107,7 +107,6 @@
 
 
 
-  .log-extra-filters{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:10px;}
   .filter-select{border:1.5px solid var(--border); background:#fff; color:var(--text); padding:5px 10px; border-radius:8px; font-size:12px; font-weight:600; font-family:Arial; cursor:pointer;}
   .filter-select:focus{outline:2px solid var(--blue);}
 
@@ -216,14 +215,12 @@
         <button class="filter-btn active" data-swimmer="all" onclick="setLogSwimmerFilter(this)">All Swimmers</button>
         <button class="filter-btn" data-swimmer="Aadhiya Venkateswarlu" onclick="setLogSwimmerFilter(this)"><img class="filter-avatar-img avatar-fill" data-swimmer="Aadhiya Venkateswarlu" alt="">Aadhiya</button>
         <button class="filter-btn" data-swimmer="Aadhana Venkateswarlu" onclick="setLogSwimmerFilter(this)"><img class="filter-avatar-img avatar-fill" data-swimmer="Aadhana Venkateswarlu" alt="">Aadhana</button>
+        <select class="filter-select" id="logMeetFilter" onchange="applyLogFilters()"><option value="all">All Meets</option></select>
+        <select class="filter-select" id="logEventFilter" onchange="applyLogFilters()"><option value="all">All Events</option></select>
+        <select class="filter-select" id="logDateFilter" onchange="applyLogFilters()"><option value="all">All Dates</option></select>
+        <button class="expand-btn" style="background:var(--muted);" onclick="resetLogFilters()">Reset filters</button>
       </div>
       <button id="logExpandBtn" class="expand-btn" onclick="toggleLogExpand()">Expand to view all rows</button>
-    </div>
-    <div class="log-extra-filters">
-      <select class="filter-select" id="logMeetFilter" onchange="applyLogFilters()"><option value="all">All Meets</option></select>
-      <select class="filter-select" id="logEventFilter" onchange="applyLogFilters()"><option value="all">All Events</option></select>
-      <select class="filter-select" id="logDateFilter" onchange="applyLogFilters()"><option value="all">All Dates</option></select>
-      <button class="expand-btn" style="background:var(--muted);" onclick="resetLogFilters()">Reset filters</button>
     </div>
     <div class="table-scroll" id="logScrollWrap">
       <table id="logTable">
